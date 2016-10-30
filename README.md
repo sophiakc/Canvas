@@ -1,14 +1,13 @@
 # W3 Lab: *Canvas*
 
 [Lab Instructions](http://courses.codepath.com/courses/ios_for_designers/unit/3#!exercises)
+[Assets](https://www.dropbox.com/s/94x5xry9ib3xc3w/Canvas%20Assets.zip)
 
 **Canvas** has been programmatically animated with Swift (iOS).
 
 Purpose of this project: practice animations and pan gesture recognizer
 
-[Assets](https://www.dropbox.com/s/94x5xry9ib3xc3w/Canvas%20Assets.zip)
-
-Submitted by: [**Sophia Kecir Camper**](http://www.sophiakc.com)
+Submitted by: [*Sophia Kecir Camper*](http://www.sophiakc.com)
 
 Total time spent: **** cumulated hours
 
@@ -71,8 +70,8 @@ var newlyCreatedFaceOriginalCenter: CGPoint!
 * [X] In the changed state .changed, we want to pan the position of the newlyCreatedFace.
 newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
 * [ ] Optional: Simulate picking up and dropping the new face from the tray to the canvas. When the new face is panned from the tray, scale it up a little. When the panning stops, scale it back down.
-* [ ] In the .began state of the Pan Gesture, animate the scale of the face to be a little larger. Animating View Properties, Using View Transforms
-* [ ] When panning ends, .ended, animate the scale back to normal, or slightly larger (Designers choice). This is a good candidate for the spring animation to simulate the "drop"! Animating View Properties, Applying Scale Transform
+    * [ ] In the .began state of the Pan Gesture, animate the scale of the face to be a little larger. Animating View Properties, Using View Transforms
+    * [ ] When panning ends, .ended, animate the scale back to normal, or slightly larger (Designers choice). This is a good candidate for the spring animation to simulate the "drop"! Animating View Properties, Applying Scale Transform
 
 5. Panning Faces on the Canvas
 * [ ] After you create the new face, programmatically create and add a UIPanGestureRecognizer to the newly created face. The guide demonstrates adding the gesture recognizer in viewDidLoad, however you will add your Pan Gesture Recognizer where you're creating the new image view. Instantiate the Gesture Recognizer

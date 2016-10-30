@@ -53,10 +53,10 @@ class CanvasViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     func didPan(sender: UIPanGestureRecognizer) {
-        
         let location = sender.location(in: view)
         let velocity = sender.velocity(in: view)
         let translation = sender.translation(in: view)
+        
 
         if sender.state == .began {
             print("Gesture began")
@@ -86,7 +86,6 @@ class CanvasViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func didPanFace(_ sender: UIPanGestureRecognizer) {
         
-        // Get the Translation from the Pan Gesture Recognizer
         let translation = sender.translation(in: view)
         
         if sender.state == .began {
@@ -106,13 +105,28 @@ class CanvasViewController: UIViewController, UIGestureRecognizerDelegate {
             // Since the original face is in the tray, but the new face is in the main view, you have to offset the coordinates
             newlyCreatedFace.center.y += trayView.frame.origin.y
             
-            // create another variable at the top of the file to capture the initial center of the new face
+            //create another variable at the top of the file to capture the initial center of the new face
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center
+            
+            // adding a spring animation
+            newlyCreatedFace.animate(withDuration:0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1)
+            
+            // Initialize a scale transform
+            newlyCreatedFace.transform = CGAffineTransform(scaleX: 2, y: 2)
+            
+            //Update the scale from an existing transform
+//            newlyCreatedFace.transform = newlyCreatedFace.transform.scaledBy(x: 2, y: 2)
+            
+            
             
         } else if sender.state == .changed {
             
             // pan the position of the newlyCreatedFace
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
+            
+            
+        
+
             
         } else if sender.state == .ended {
          
