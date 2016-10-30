@@ -52,23 +52,23 @@ trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
     * [X] Optional: Try animating the ending tray motion with a bounce using the damping ratio and initial spring velocity. Spring Animation
 
 4. Creating Faces
-* [ ] In Storyboard, drag a pan gesture recognizer onto each smiley face. (Make sure that User Interaction is enabled in the view properties for each face.)
-* [ ] Create an action from any of the face pan gesture recognizers. After you create the first action, you can drag the other pan gesture recognizers onto the same method, so they can share it.
+* [X] In Storyboard, drag a pan gesture recognizer onto each smiley face. (Make sure that User Interaction is enabled in the view properties for each face.)
+* [X] Create an action from any of the face pan gesture recognizers. After you create the first action, you can drag the other pan gesture recognizers onto the same method, so they can share it.
 Sharing methods
-* [ ] We'll be creating new faces, so we'll need to create a variable to keep track of the new face. Add a variable of type UIImageView to the top of the file:
+* [X] We'll be creating new faces, so we'll need to create a variable to keep track of the new face. Add a variable of type UIImageView to the top of the file:
 var newlyCreatedFace: UIImageView!
-* [ ] Add a conditional statement with conditions for the gesture states, .began, .changed, and ended.
-* [ ] In the began state (.began) of the Pan Gesture Recognizer, we will create a new image view that contains the same image as the view that was panned on. Conveniently, Gesture Recognizers know the view they are attached to! Guide: programmatically Creating Views
-    * [ ] var imageView = sender.view as! UIImageView. imageView now refers to the face that you panned on.
-    * [ ] newlyCreatedFace = UIImageView(image: imageView.image). Create a new image view that has the same image as the one you're currently panning.
-    * [ ] view.addSubview(newlyCreatedFace). Add the new face to the main view.
-    * [ ] newlyCreatedFace.center = imageView.center. Initialize the position of the new face.
-    * [ ] newlyCreatedFace.center.y += trayView.frame.origin.y. Since the original face is in the tray, but the new face is in the main view, you have to offset the coordinates.
-* [ ] Now that the new face has been created, we want to actually pan it's position. As with the tray pan, you will want to create another variable at the top of the file to capture the initial center of the new face.*
+* [X] Add a conditional statement with conditions for the gesture states, .began, .changed, and ended.
+* [X] In the began state (.began) of the Pan Gesture Recognizer, we will create a new image view that contains the same image as the view that was panned on. Conveniently, Gesture Recognizers know the view they are attached to! Guide: programmatically Creating Views
+    * [X] var imageView = sender.view as! UIImageView. imageView now refers to the face that you panned on.
+    * [X] newlyCreatedFace = UIImageView(image: imageView.image). Create a new image view that has the same image as the one you're currently panning.
+    * [X] view.addSubview(newlyCreatedFace). Add the new face to the main view.
+    * [X] newlyCreatedFace.center = imageView.center. Initialize the position of the new face.
+    * [X] newlyCreatedFace.center.y += trayView.frame.origin.y. Since the original face is in the tray, but the new face is in the main view, you have to offset the coordinates.
+* [X] Now that the new face has been created, we want to actually pan it's position. As with the tray pan, you will want to create another variable at the top of the file to capture the initial center of the new face.*
 var newlyCreatedFaceOriginalCenter: CGPoint! 
-* [ ] Get the Translation from the Pan Gesture Recognizer. Pan Gesture Recognizer
-* [ ] Back in the began state .began, set newlyCreatedFaceOriginalCenter = newlyCreatedFace.center.
-* [ ] In the changed state .changed, we want to pan the position of the newlyCreatedFace.
+* [X] Get the Translation from the Pan Gesture Recognizer. Pan Gesture Recognizer
+* [X] Back in the began state .began, set newlyCreatedFaceOriginalCenter = newlyCreatedFace.center.
+* [X] In the changed state .changed, we want to pan the position of the newlyCreatedFace.
 newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
 * [ ] Optional: Simulate picking up and dropping the new face from the tray to the canvas. When the new face is panned from the tray, scale it up a little. When the panning stops, scale it back down.
 * [ ] In the .began state of the Pan Gesture, animate the scale of the face to be a little larger. Animating View Properties, Using View Transforms

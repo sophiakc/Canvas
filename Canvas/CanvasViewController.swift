@@ -20,6 +20,10 @@ class CanvasViewController: UIViewController, UIGestureRecognizerDelegate {
     var trayUp: CGPoint!
     var trayDown: CGPoint!
     
+    var newlyCreatedFace: UIImageView!
+    
+    var newlyCreatedFaceOriginalCenter: CGPoint!
+    
     
     
     
@@ -45,18 +49,15 @@ class CanvasViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     @IBAction func didPanTray(_ sender: UIPanGestureRecognizer) {
-//        let translation = sender.translation(in: view)
     }
     
     
     func didPan(sender: UIPanGestureRecognizer) {
+        
         let location = sender.location(in: view)
         let velocity = sender.velocity(in: view)
         let translation = sender.translation(in: view)
-        
 
-        
-        
         if sender.state == .began {
             print("Gesture began")
             trayOriginalCenter = trayView.center
@@ -67,6 +68,7 @@ class CanvasViewController: UIViewController, UIGestureRecognizerDelegate {
             
         } else if sender.state == .ended {
             print("Gesture ended")
+            
             if velocity.y > 0 {
                 UIView.animate(withDuration:0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
@@ -78,9 +80,44 @@ class CanvasViewController: UIViewController, UIGestureRecognizerDelegate {
                     self.trayView.center = self.trayUp
                 }, completion: nil)
             }
-            
         }
     }
-
     
+    
+    @IBAction func didPanFace(_ sender: UIPanGestureRecognizer) {
+        
+        // Get the Translation from the Pan Gesture Recognizer
+        let translation = sender.translation(in: view)
+        
+        if sender.state == .began {
+            
+            // imageView now refers to the face that you panned on
+            var imageView = sender.view as! UIImageView
+            
+            // Create a new image view that has the same image as the one you're currently panning
+            newlyCreatedFace = UIImageView(image: imageView.image)
+            
+            // Add the new face to the main view
+            view.addSubview(newlyCreatedFace)
+            
+            // Initialize the position of the new face
+            newlyCreatedFace.center = imageView.center
+            
+            // Since the original face is in the tray, but the new face is in the main view, you have to offset the coordinates
+            newlyCreatedFace.center.y += trayView.frame.origin.y
+            
+            // create another variable at the top of the file to capture the initial center of the new face
+            newlyCreatedFaceOriginalCenter = newlyCreatedFace.center
+            
+        } else if sender.state == .changed {
+            
+            // pan the position of the newlyCreatedFace
+            newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
+            
+        } else if sender.state == .ended {
+         
+        }
+
+    }
+
 }
